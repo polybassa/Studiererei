@@ -1,18 +1,17 @@
-\documentclass[10pt,a4paper]{scrartcl}
-\usepackage[latin1]{inputenc}
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[ngerman]{babel}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
-\usepackage{listings}
-\usepackage[left=0.5cm, right=0.5cm, top=1.5cm, bottom=2cm]{geometry}
 \usepackage{pdfpages}
-\usepackage{tikz}
-\usetikzlibrary{arrows}
-\usetikzlibrary{shapes}
 \usepackage{multirow}
 \usepackage[linkbordercolor=white,linkcolor=black ]{hyperref}
+\usepackage{lscape}
 
 \begin{document}
+
+\newcommand{\abs}[1]{\ensuremath{\left\vert#1\right\vert}}
 
 \newcommand{\ENDV}{\hspace{5mm} \vline \hspace{1mm}}
 \newcommand{\LHospital}{\stackrel{L'H}{=}}
@@ -26,65 +25,66 @@
 \newcommand{\DefaultTabular}{|c|c|p{9cm}|}
 
 \title{Statistik Zusammenfassung}
-\author{Alexander Strobl}
+\author{Nils WeiÃŸ - Alexander Strobl}
 
 \maketitle
 \tableofcontents
-\listoffigures
-%\listoftables
 
 \newpage
 \section{Grundlagen}
 
-\subsection{Häufigkeitsverteilungen}
+\subsection{HÃ¤ufigkeitsverteilungen}
 
 \begin{figure}[!h]
 \begin{tabular}{|c|p{8cm}|} 
 \hline Eigenschaft & Beschreibung \\ 
-\hline Merkmalsträger & Objekt von Interesse bei einer empirischen Untersuchung\\ 
-\hline Gesamtheit & Menge der relevanten Merkmalsträger; Die Anzahl nennt man Umfang der Gesamtheit \\
+\hline MerkmalstrÃ¤ger & Objekt von Interesse bei empirischer Untersuchung\\ 
+\hline Gesamtheit & Menge der relevanten MerkmalstrÃ¤ger. Die Anzahl nennt man Umfang der Gesamtheit \\
 \hline Mikrodaten & Daten, welche ausgewertet werden sollen \\
-\hline Häufigkeitsverteilung & Ausprägungen der einzelnen Merkmalsträger \\
+\hline HÃ¤ufigkeitsverteilung & AusprÃ¤gungen der einzelnen MerkmalstrÃ¤ger \\
 \hline
 \end{tabular}
-\caption{Begriffserklärungen: Häufigkeitsverteilung}
+\caption{BegriffserklÃ¤rungen: HÃ¤ufigkeitsverteilung}
 \end{figure}
 
 \begin{figure}[!h]
 \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|} 
-\hline Merkmalsausprä-gung $x_i$ & absolute Häufigkeiten $n_i$ & relative Häufigkeiten $f_i$ \\
+\hline MerkmalsausprÃ¤gung $x_i$ & absolute HÃ¤ufigkeiten $n_i$ & relative HÃ¤ufigkeiten $f_i$ \\
 \hline 1 & 6 & 0.3 / 30\% \\
-\hline 2 & 7 & 0.35  \\
-\hline 3 & 4 & 0.2\\
-\hline 4 & 2 & 0.1\\
-\hline 5 & 1 & 0.05\\
-\hline $\sum$ & 20 & 1\\
+\hline 2 & 7 & 0.35 / 35\% \\
+\hline 3 & 4 & 0.2 / 20\%\\
+\hline 4 & 2 & 0.1 / 10 \%\\
+\hline 5 & 1 & 0.05 / 5 \%\\
+\hline $\sum$ & 20 & 1 / 100 \%\\
 \hline 
 \end{tabular}
-\caption{Beispiel: Häufigkeitsverteilung von Noten}
+\caption{Beispiel: HÃ¤ufigkeitsverteilung von Noten}
 \end{figure}
 
-\subsection{Verschiedene Diagrammtypen}
-\begin{figure}[!h]
-\fbox{\includegraphics{./Source/Histogramm.png}}
-\caption{Histogramm}
-\end{figure}
+\subsection{Kummulierte HÃ¤ufigkeiten}
+\subsubsection{Absolut}
+
+Summe der ``ersten" $i$ absoluten HÃ¤ufigkeiten\\
+
+$N_i = \sum\limits^i_{j = 1}n_j$
+
+\subsubsection{Relativ}
+
+Summe der ``ersten" $i$ relativen HÃ¤ufigkeiten\\
+
+$F_i = \sum\limits^i_{j=1}f_j$
+
+\subsubsection{Empirische Verteilungsfunktion}
+
+Summe Ã¼ber alle $i$, fÃ¼r die $x_i \leqslant x$ ist \\
+Es werden die relativen HÃ¤ufigkeiten $f_i$ all jener AusprÃ¤gungen summiert, die 
+hÃ¶chsten gleich $x$ sind\\
+
+$F(x) = \sum\limits_{\{i|x_i \leqslant x\}} f_i$
 
 \begin{figure}[!h]
-\fbox{\includegraphics{./Source/Relative_Klassenhaeufigkeiten.png}}
-\caption{Relative Klassenhäufigkeiten}
-\end{figure}
-\clearpage
-
-\noindent Wird allerdings nicht mehr verwendet, sondern stattdessen:
-\begin{figure}[!h]
-\fbox{\includegraphics{./Source/Haufigkeitsdichte.png}}
-\caption{Häufigkeitsdichte}
-\end{figure}
-
-\begin{figure}[!h]
-\begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|p{4cm}|} 
-\hline Klasse i $x_i$ & Klassenobergrenze $x_i^o$ & absolute Häufigkeiten $n_i$ & relative Häufigkeiten $f_i$ & emp. Verteilungsfunktion an der Klassenobergrenze $F(x_i^0)$ \\
+\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{3cm}|p{4cm}|} 
+\hline Klasse i $x_i$ & Klassen-obergrenze $x_i^o$ & abs. HÃ¤ufigkeiten $n_i$ & rel. HÃ¤ufigkeiten $f_i$ & emp. Verteilungsfunktion a. d. Klassenobergrenze $F(x_i^0)$ \\
 \hline 1 & 29 & 7 & 0.01165 & 1.17 \% \\
 \hline 2 & 39 & 59 & 0.09817 & 10.98 \%  \\
 \hline 3 & 49 & 127 & 0.21131 & 32.11 \%\\
@@ -98,155 +98,129 @@
 \caption{klassierte Altersverteilung}
 \end{figure}
 
-\begin{figure}[!h]
-\fbox{\includegraphics{./Source/Verteilungsfunktion.png}}
-\caption{Empirische Verteilungsfunktion}
-\end{figure}
-\clearpage
+\subsection{MaÃŸzahlen zur Beschreibung einer Verteilung}
+\subsubsection{Modus}
+(auch: Modalwert, hÃ¤ufigster Wert)
 
-\begin{figure}[!h]
-\fbox{\includegraphics{./Source/Approximierende_Verteilungsfunktion.png}}
-\caption{Approximierende Verteilungsfunktion}
-\end{figure}
+Bezeichnet das Merkmal $x_i$ mit der grÃ¶ÃŸten absoluten HÃ¤ufigkeit $n_i$ bzw. der 
+grÃ¶ÃŸten relativen HÃ¤ufigkeit $f_i$.
 
-\subsection{Maßzahlen zur Beschreibung der Lage einer Verteilung}
+\subsubsection{Median - Quantile}
 
-\largeRowSize
-\begin{table}[!h]
-\begin{tabular}{\DefaultTabular}
-\hline Eigenschaft & Formeln & Beschreibung \\
-\hline Modus & $\max(x_i)$ & Merkmalsausprägung die am Häufigsten vorkommt \\
-\hline Median & $x_{0.5}$ & $50\% \leq x$ \&\& $50\% \geq x$\\
-\hline \multirow{17}{*}{Arithmetisches Mittel $\overline{x}$} & \multirow{2}{*}{$= \frac{\text{Summe aller Merkmalswerte}}{\text{Anzahl aller Merkmalswerte}}$} & Ist ein Spezialfall des Erwartungswertes, mit gleicher Wahrscheinlichkeit für alle Elemente\\
-% & & \\
-\cline{2-3} & \multirow{2}{*}{$\overline{x} = \frac{1}{n} \sum\limits_{i=1}^{n} x_i$} & dabei sind die $x_i$ die Merkmalswerte, und n ist die Anzahl der Merkmalswerte, d.h. die Anzahl der Merkmalsträger)\\
-\cline{2-3} & \multirow{3}{*}{$\overline{x} = \frac{1}{n} \sum\limits_{i=1}^{k} x_i n_i$} & dabei ist $x_i$ die i-te Merkmalsausprägung, $n_i$ die absolute Häufigkeit der Ausprägung $x_i$ und k ist die Anzahl der verschiedenen Merkmalsausprägungen\\
-\cline{2-3} & \multirow{3}{*}{$\overline{x} = \sum\limits_{i=1}^{k} x_i f_i$} & dabei ist $x_i$ die i-te Merkmalsausprägung, $f_i$ die relative Häufigkeit der Ausprägung $x_i$ und k ist die Anzahl der verschiedenen Merkmalsausprägungen\\ 
-\cline{2-3} & \multirow{3}{*}{$\overline{x} = \frac{1}{n} \sum\limits_{i=1}^{r} \overline{x_i} n_i$} & dabei bezeichnet $x_i$ das arithmetische Mittel in der i-ten Schicht, $n_i$ den Umfang der i-ten Schicht und r die Zahl der Schichten\\ 
-\cline{2-3} & \multirow{3}{*}{$\overline{x} = \sum\limits_{i=1}^r \overline{x_i} f_i$} & dabei bezeichnet 
-$x_i$ das arithmetische Mittel in der i-ten Schicht,  $f_i$ den Anteil der Merkmalsträger in der i-ten Schicht und r die Zahl der Schichten\\
-\hline Quantile & $x_p, x_{1-p} \rightarrow x_{0.3}, x_{0.7}$ & Spezialfall: Quartile $x_{0.25}, x_{0.75}$ \\
-\hline
-\end{tabular}
-\end{table}
-\normalRowSize
+Median: $x_{0,5}$= 50\% Quantil\\
 
-\begin{figure}[!h]
-\fbox{\includegraphics{./Source/Boxplot.png}}
-\caption{Boxplot}
-\end{figure}
+Wichtige Quantile: $x_{0,25}$, $x_{0,75}$
+
+\subsubsection{Arithmetisches Mittel}
+(auch: Mittelwert, Durchschnittswert)\\
+
+$\overline{x} = \frac{\textbf{Summe aller Merkmalswerte}}{\textbf{Anzahl aller 
+Merkmalswerte}}$\\
+
+$\overline{x} = \frac{1}{n} \sum\limits_{i=1}^{n} x_i$\\
+
+$\overline{x} = \frac{1}{n} \sum\limits_{i=1}^{k} x_i n_i$\\
+
+$\overline{x} = \sum\limits_{i=1}^{k} x_i f_i$\\
+
+$\overline{x} = \frac{1}{n} \sum\limits_{i=1}^{r} \overline{x_i} n_i$\\
+
+$\overline{x} = \sum\limits_{i=1}^r \overline{x_i} f_i$\\
 \newpage
-
 \section{Streuung und Konzentration}
 
-\LargeRowSize
-\begin{figure}[!h]
-\begin{tabular}{\DefaultTabular}
-\hline Eigenschaft & Formel & Beschreibung \\
-\hline Spannweite & $\Delta = \max - \min $ & Differenz zwischen max. und min. Merkmalswerten \\
-\hline Quartilsabstand & $\Delta = x_{0.75} - x_{0.25}$ & Differenz zwischen den beiden Quartilen \\
-\hline \multirow{6}{*}{Varianz} & \multirow{2}{*}{$s^2$} & Mittlere quad. Abweichung vom Mittelwert, invariant gegenüber Verschiebungen\\
-\cline{2-3} & $= \frac{1}{n}\sum\limits_{i=1}^n (x_i - \overline{x})^2$ &  $= \frac{1}{n}\sum\limits_{i=1}^k (x_i - \overline{x})^2 n_i$ \hspace{4mm} $= \frac{1}{n}\sum\limits_{i=1}^k (x_i - \overline{x})^2 f_i$ \\
-\cline{2-3} & $= \frac{1}{n}\sum\limits_{i=1}^n x_i^2 - \overline{x}^2$ &  $= \frac{1}{n}\sum\limits_{i=1}^k x_i^2 n_i - \overline{x}^2$ \hspace{6mm} $= \frac{1}{n} \sum\limits_{i=1}^k x_i^2 f_i - \overline{x}^2$ \\
-\cline{2-3} & $= \frac{1}{n - 1} \sum\limits_{i= 1}^n (x_i - \overline{x})^2$ & Bei Stichproben ein n weniger nehmen \\
-\hline \multirow{2}{*}{Standardabweichung} & \multirow{2}{*}{s = $\sqrt{s^2}$} & Mittlere Abweichung vom Mittelwert, invariant gegenüber Verschiebungen\\
-\hline Standardisierte Merkmale & $\overline{x} = 0$ und $s^2 = 1$ & Merkmalsverteilung gilt als Standardisiert \\
-\hline \multirow{2}{*}{Kovarianz} & $s_{XY} = \frac{1}{n} \sum\limits_{i=1}^n (x_i - \overline{x})(y_i - \overline{y})$ & \\
-\cline{2-3} & $= \frac{1}{n} \sum\limits_{i=1}^n x_i y_i - \overline{x}  \overline{y}$ & \\
-\hline \multirow{4}{*}{Korrelationskoeffizient} & r & nach Bravais-Pearson\\
- & $\frac{s_{XY}}{s_X s_Y} = 
+\subsubsection{Spannweite}
+(Einfachstes StreuungsmaÃŸ, Differenz zwischen grÃ¶ÃŸtem und kleinstem auftretenden 
+Merkmalswert)\\
+
+$\textbf{Spannweite} = max(x_i) - min(x_i)$
+
+\subsubsection{Quartilsabstand}
+(Spannweite der mittleren 50\% der MerkmalstrÃ¤ger)\\
+
+$\textbf{Quartilsabstand} = x_{0,75} - x_{0,25}$
+
+\subsubsection{Varianz}
+(Mittlere quadratische Abweichung vom Mittelwert)\\
+
+$s^2 = \frac{1}{n}\sum\limits_{i=1}^n (x_i - \overline{x})^2 = \frac{1}{n}\sum\limits_{i=1}^k (x_i - \overline{x})^2 n_i = \sum\limits_{i=1}^k (x_i - \overline{x})^2 f_i$ \\
+
+$s^2 = \frac{1}{n}\sum\limits_{i=1}^n x_i^2 - \overline{x}^2 = \frac{1}{n}\sum\limits_{i=1}^k x_i^2 n_i - \overline{x}^2 = \sum\limits_{i=1}^k x_i^2 f_i - \overline{x}^2$ \\
+
+$s^2 = \overline{x^2} - \overline{x}^2$\\
+
+\textbf{Varianz bei Vorliegen von Teilgesamtheiten}\\
+
+$s^2 = \frac{1}{n}\sum\limits_{i=1}^r s_i^2n_i +  \frac{1}{n}\sum\limits_{i=1}^r (\overline{x_i} - \overline{x})^2 n_i $
+
+\subsubsection{Standardabweichung}
+
+$s = \sqrt{s^2}$
+
+\subsubsection{Standardisierte Merkmale}
+
+Ein Merkmal, fÃ¼r dessen Verteilung $\overline{x} = 0$ und $s^2 = 1$ gilt, heiÃŸt 
+standardisiert.
+
+\subsubsection{Kovarianz}
+(von X und Y)\\
+
+$s_{XY} = \frac{1}{n} \sum\limits_{i=1}^n (x_i - \overline{x})(y_i - \overline{y}) 
+= \frac{1}{n} \sum\limits_{i=1}^n x_i y_i - \overline{x} ~ \overline{y}$
+
+\subsubsection{Korrelationskoeffizient}
+(nach Bravais-Pearson)\\
+
+$\frac{s_{XY}}{s_X s_Y} = 
  \frac{  \frac{1}{n} \sum\limits_{i=1}^n (x_i - \overline{x})(y_i - \overline{y}) }
- {\sqrt{\frac{1}{n} \sum\limits_{i=1}^n (x_i - \overline{x})^2} \sqrt{\frac{1}{n} \sum\limits_{i=1}^n (y_i - \overline{y})^2}}$ & r = 1 $||$ r = -1: steigende / fallende Gerade \\
- & & r = 0: kein lin. Zusammenhang\\
-\hline \multirow{3}{*}{Regressionsgerade} & \multirow{2}{*}{$\hat{y} = \hat{\alpha} + \hat{\beta}x$} & \multirow{2}{*}{$\hat{\beta} = \frac{s_{XY}}{s_X}$} \\
- & \multirow{2}{*}{$\hat{a} = \overline{y} - \hat{\beta}\overline{x}$} & \\
- & & \\
-\hline Simpsons Paradoxon & & Widersprüchliche Ergebnisse bei genauerer Betrachtung \\
-\hline
-\end{tabular}
-\caption{Begriffserklärungen: Streuung und Konzentration}
-\end{figure}
-\normalRowSize
-\clearpage
-
-\begin{figure}[!h]
-\fbox{\includegraphics{./Source/Scatterplot.png}}
-\caption{Scatterplot}
-\end{figure}
-
+ {\sqrt{\frac{1}{n} \sum\limits_{i=1}^n (x_i - \overline{x})^2} \sqrt{\frac{1}{n} \sum\limits_{i=1}^n (y_i - 
+ \overline{y})^2}}$\\
+ 
+ Es gilt: $-1 \leqslant r \leqslant 1$
+ 
+ $r = 0$: kein linearer Zusammenhang
+ $r = 1$: steigende Gerade
+ $r = -1$: fallende Gerade 
+ 
+ \subsubsection{Regressionsgerade}
+ 
+ $\hat{y} = \hat{\alpha} + \hat{\beta}x$\\
+ 
+ $\hat{\beta} = \frac{s_{XY}}{s_X}$\\
+ 
+ $\hat{\alpha} = \overline{y} - \hat{\beta}\overline{x}$\\
+ 
 \section{Wahrscheinlichkeitstheorie}
 \LargeRowSize
 \begin{table}[!h]
 \begin{tabular}{\DefaultTabular}
-\hline Eigenschaft & Formel & Beschreibung \\
-\hline Wahrscheinlichkeitsraum & $\Omega$ & Alle Ergebnisse, die stattfinden können\\
-\hline LaPlace-Wahrscheinlichkeit & $P(A) = \frac{\text{Anz. Elem in A}}{\text{Anz. Elem in }\Omega} = \frac{\sharp A}{\sharp \Omega}$ & Alles gleich wahrscheinlich\\
-\hline Bedingte Wahrscheinlichkeiten & $P(A_1 | A_2) = \frac{P(A_1 \cap A_2)}{P(A_2)}$ & Wahrscheinlichkeit für $A_1$ nachdem $A_2$ eingetreten \\
-%\hline\multirow{2}{*}{Axiome von Kolmogorov} & $P(A \cup B | C)$ & \\
-%\cline{2-3} & $= P(A|C) + P(B|C) - P(A\cap B | C)$ & \\
-\hline Abhängigkeit & $P(A\cup B) = P(A) + P(B) - P(A)P(B)$ & \\
-\hline Unabhängigkeit & $P(A\cap B) = P(A)P(B)$ & \\
-\hline Totale Wahrscheinlichkeit & $P(B) = \sum\limits_{i=1}^mP(B\cap A_) = P(A_i)P(B|A_i)$ & \\
-\hline Satz von Bayes & $P(A_j|B) = 
-\frac{P(B|A_j)P(A_j)}
-{\sum\limits_{i=1}^m P(B|A_i)P(A_i)}$ & \\
+\hline \textbf{Eigenschaft} & \textbf{Formel} \\
+\hline Wahrscheinlichkeitsraum & $\Omega$ \\
+\hline LaPlace-Wahrscheinlichkeit & $P(A) = \frac{\text{Anz. Elem in A}}{\text{Anz. Elem in }\Omega} = \frac{\abs A}{\abs \Omega}$ \\
+\hline Bedingte Wahrscheinlichkeiten & $P(B | A) = \frac{P(A \cap B)}{P(A)}$ \\
+\hline Multiplikationssatz & $P(A \cap B) = P(A) * P(B|A)$ \\
+\hline Additionssatz (bel. Ereignisse) & $P(A \cup B) = P(A) + P(B) - P(A \cap B)$ \\
+\hline Additionssatz (ausschlieÃŸende Ereignisse) & $P(A \cup B) = P(A) + P(B)$ // \textbf{( A $\cap$ B = $\emptyset$)} \\
+\hline AbhÃ¤ngigkeit & $P(A\cup B) = P(A) + P(B) - P(A)P(B)$  \\
+\hline UnabhÃ¤ngigkeit & $P(A\cap B) = P(A)P(B)$  \\
+\hline Totale Wahrscheinlichkeit & $P(B) = \sum\limits_{i=1}^mP(B\cap A_) = P(A_i)P(B|A_i)$  \\
+\hline Satz von Bayes & $P(A_j|B) = \frac{P(B|A_j)P(A_j)}
+{\sum\limits_{i=1}^m P(B|A_i)P(A_i)}$  \\
 \hline
 \end{tabular}
-\caption{Begriffserklärungen: Wahrscheinlichkeitstheorie}
+\caption{BegriffserklÃ¤rungen: Wahrscheinlichkeitstheorie}
 \end{table}
 \normalRowSize
-
-\subsection{Rechenbeispiele}
-\subsubsection{Paarbildung}
-12 Männer, 10 Frauen: Wie viele Paare können gebildet werden? \newline
-$\sharp A \sharp B$ = 12 $\times$ 10 = 120
-
-\subsubsection{Sortierung}
-n Elemente sollen sortiert werden: Wie viele Möglichkeiten? \newline
-n!
-
 \newpage
-\subsubsection{Satz von Bayes - HIV-Test}
-P($HIV^+$) = Prävalenz = Anteil Kranke an der Bevölkerung \newline
-\begin{figure}[!h]
-\includegraphics{./Source/HIVTest.png}
-\caption{HIV-Test - Krankheitswahrscheinlichkeit bei pos. Testergebnis}
-\end{figure}
 
-\subsubsection{Elemente aus einer Menge nehmen}
-%\begin{enumerate}
-%\item Fall \newline 
-%Mit Zurücklegen, mit Berücksichtigung der Reihenfolge: \newline 
-%$N^n$ \newline
-%5 mal Würfeln: Anzahl der Möglichkeiten? \newline
-%$6^5$
-%\item Fall \newline
-%Ohne Zurücklegen, mit Berücksichtigung der Reihenfolge: \newline
-%$\frac{N!}{(N - n)!}$ \newline
-%20 Sportler, 3 Medallien: Anzahl der Vergabemöglichkeiten? \newline
-%$\frac{20!}{17!}$
-%\item Fall \newline
-%Ohne Zurücklegen, ohne Berücksichtigung der Reihenfolge: \newline
-%$\binom{N}{n}$ \newline
-%Lotto 6 aus 49: Anzahl der Ziehmöglichkeiten? \newline
-%$\binom{49}{6}$
-%\item Fall \newline
-%Mit Zurücklegen, ohne Berücksichtigung der Reihenfolge: \newline
-%$\binom{N + n - 1}{n} \rightarrow$ Allerdings kaum relevant
-%\end{enumerate}
-\begin{figure}[!h]
-\includegraphics{./Source/Kombinatorik.png}
-\caption{Verschiedene Lösungsformeln der Kombinatorik}
-\end{figure}
-
-
+\begin{landscape}
 \section{Diskrete Zufallsvariablen}
 \LargeRowSize
 \begin{table}[!h]
 \begin{tabular}{\DefaultTabular}
 \hline Eigenschaft & Formel & Beschreibung \\
-\hline Verteilungsfunktion & $F_x(x) = P(X \leq x)$ & definiert die Wahrscheinlichkeit der Zufallsvariable X, dass X höchstens den Wert x annimmt\\
-\hline \multirow{2}{*}{Unabhängigkeit} & $P(X_1 = x_1, X_2 = x_2)$ & \multirow{2}{*}{gilt ebenfalls für andere Operationen wie z.B. $\leq$} \\
+\hline Verteilungsfunktion & $F_x(x) = P(X \leq x)$ & definiert die Wahrscheinlichkeit der Zufallsvariable X, dass X hÃ¶chstens den Wert x annimmt\\
+\hline \multirow{2}{*}{UnabhÃ¤ngigkeit} & $P(X_1 = x_1, X_2 = x_2)$ & \multirow{2}{*}{gilt ebenfalls fÃ¼r andere Operationen wie z.B. $\leq$} \\
  & $= P(X_1 = x_1) * P(X_2 = x_2)$ & \\
 \hline \multirow{2}{*}{Erwartungswert} & E(X) = $\mu_x$ = $\mu$ & \multirow{2}{*}{Ist der Mittelwert von X} \\
 & $= \sum\limits_{i=1}^k x_i p_i = \sum\limits_{i=1}^k x_i* P(X = x_i)$ & \\
@@ -259,143 +233,42 @@ P($HIV^+$) = Prävalenz = Anteil Kranke an der Bevölkerung \newline
 \cline{2-3} & $=E(X^2) - E(X)^2$ &\\
 \hline
 \end{tabular}
-\caption{Begriffserklärungen: Diskrete Zufallsvariablen}
+\caption{BegriffserklÃ¤rungen: Diskrete Zufallsvariablen}
 \end{table}
+\end{landscape}
 \normalRowSize
+\newpage
 
-\subsection{Verteilungsfunktionen}
-
-\subsubsection{Bernoulli-Verteilung}
-
-\noindent Wird verwendet, wenn es nur 2 Möglichkeiten als Ausgang gibt (Sieg / Niederlage, Gewin / Verlust usw.), z.B. Münzwurf, Los ziehen. \newline \newline
-f(x) = $\left\{\begin{array}{cl}
-1 - \pi & $für x = 0$\\
-\pi & $für x = 1$\\
-0 & sonst
-\end{array}\right\}$
-\newline \newline
-E(X) = $\sum\limits_{i=1}^2 x_ip_i = 0*P(X= 0) + 1* P(X=1) = \pi$
-\newline \newline
-Var(X) = $\sum\limits_{i=1}^2 (x_i - \mu_x)^2p_i = (0 - \pi)^2(1-\pi) + (1 - \pi)^1 \pi = \pi(1 - \pi)$
-
-\subsubsection{Binomialverteilung}
-
-\noindent X sind die Anzahl der Treffer bei n Versuchen, z.B. Multiple Choice \newline \newline
-$X_i$ = $\left\{\begin{array}{cl}
-1 & $falls im iten Versuch ein Treffer erzielt wird$ \\
-0 & $sonst$ \\
-\end{array}\right\}$ \newline
-und es gilt X = $\sum\limits_{i=1}^n X_i$
- 
-f(x$|n, \pi$) = $\left\{\begin{array}{cl}
-\left(\begin{array}{c}
-n\\
-x
-\end{array}\right)\pi^x(1 - \pi)^{n-x} & $für x = 0,1,2,...,n$ \\
-0 & sonst
-\end{array}\right\}$
-\newline \newline
-E(X) = $n * \pi$ 
-\newline \newline
-Var(X) =$n * \pi * (1- \pi)$
-
-\subsubsection{Diskrete Gleichverteilung}
-
-f(x$|$n) = $\left\{\begin{array}{cl}
-\frac{1}{n} & $für x = 1,2,...,n$ \\
-0 & $sonst$ \\
-\end{array}\right\}$ 
-\newline \newline
-E(X) = $\frac{n + 1}{2}$
-\newline \newline
-Var(X) = $\frac{n^2 - 1}{12}$
-
-\subsubsection{Geometrische Verteilung}
-
-\noindent Ein Bernoulli-Experiment (0/1-Verteilung) wird immer wieder wiederholt. Die Zufallsvariable X ist die Versuchsnummer des ersten Treffers.
-
-f(n$|\pi$) = $\left\{\begin{array}{cl}
-(1-\pi)^{n-1}*\pi & $für n = 1,2,3,...$ \\
-0 & $sonst$ \\
-\end{array}\right\}$ 
-\newline \newline
-E(X) = $\frac{1}{\pi}$
-\newline \newline
-Var(X) = $\frac{1 - \pi}{\pi^2}$
-
-\subsubsection{Hypergeometrische Verteilung}
-
-\noindent M aus N Elementen haben eine bestimmte Eigenschaft (Losgewinn). 
-\newline Wenn n Elemente mit Zurücklegen gezogen werden:
-$\pi = \frac{M}{N}$
-\newline 
-\newline Wenn n Elemente ohne Zurücklegen gezogen werden, ist die Anzahl X nicht mehr exakt binomialverteilt.
-
-f(n$|$n,N,M) = $\left\{\begin{array}{cl}
-\frac{ 
-\left(\begin{array}{c}
-M \\
-x \\
-\end{array}\right) * 
-\left(\begin{array}{c}
-N-M \\
-n-x \\
-\end{array}\right) }
-{
-\left(\begin{array}{c}
-N \\
-n \\
-\end{array}\right) } 
-& $für x = max(0,n - (N-M)),..., min(n,M)$ \\
-0 & $sonst$ \\
-\end{array}\right\}$ 
-\newline \newline
-E(X) = $n*\frac{M}{N}$
-\newline \newline
-Var(X) = $n*\frac{M}{N}*\left(1 - \frac{M}{N}\right)*\frac{N-n}{N-1}$
-
-
-\subsubsection{Poisson-Verteilung}
-
-\noindent Muss in der Klausur erwähnt werden, kann nicht selbst entschieden werden.
-\newline z.B. Anrufe in best. Zeitabschnitt in einer Hotline oder Anzahl der Personen, die in einem best. Zeitabschnitt einen Schalter besuchen
-
-f(x$|\lambda$) = $\left\{\begin{array}{cl}
-\frac{\lambda^x}{x!}\epsilon^{-\lambda} & $für x = 0,1,2,3,...$ \\
-0 & $sonst$ \\
-\end{array}\right\}$ 
-\newline \newline
-E(X) = $\lambda$
-\newline \newline
-Var(X) = $\lambda$
-
-
-$(n+1)! = (n+1)*n! \leq (n+1)*n^n = n^{n+1} + n^n \leq (n+1)^{n+1}$
-
-
-
+\begin{landscape}
 \section{Stetige Zufallsvariablen}
 \LargeRowSize
 \begin{table}[!h]
 \begin{tabular}{\DefaultTabular}
 \hline Eigenschaft & Formel & Beschreibung \\
 \hline \multirow{4}{*}{Definition} & $F_x(x) = \int\limits_{-\infty}^{x}f(t)dt$ & Verteilungsfunktion, $f(t) =$ Dichtefunktion\\
-\cline{2-3} &  $P(X = x) = 0$ & Wahrscheinlichkeit für einen Wert gleich x ist immer 0\\
+\cline{2-3} &  $P(X = x) = 0$ & Wahrscheinlichkeit fÃ¼r einen Wert gleich x ist immer 0\\
 \cline{2-3} & $P(x_1 \leq X \leq x_2) = F_x(x_2) - F_x(x_1)$ & $F_x^{'}(x) = f_x(x)$ Die Dichtefunktion ist die Ableitung der Verteilungsfunktion \\
-\hline Erwartungswert $\mu_x$ & $E(X) = \int\limits_{-\infty}^{+\infty} x*f(x)dx$ & Die Dichtefunktion $f(x)$ wird nie verändert! \newline $E(\frac{1}{X}) = \int \frac{1}{X}*f(x)dx$\\
+\hline Erwartungswert $\mu_x$ & $E(X) = \int\limits_{-\infty}^{+\infty} x*f(x)dx$ & Die Dichtefunktion $f(x)$ wird nie verÃ¤ndert! \newline $E(\frac{1}{X}) = \int \frac{1}{X}*f(x)dx$\\
 \hline \multirow{3}{*}{Rechenregeln} & $E(Y) = E(g(X)) = \int\limits_a^bg(x)*f(x)dx$ & $g(x)$ ist eine reelle Funktion\\
 \cline{2-3} & $E(aX + b) = a*E(X) + b$ & lineare Transformation\\
 \cline{2-3} & $E(X+Y) = E(X) + E(Y)$ & \\
-\hline Modus & $F_x(x_p) = p$ & Die Wahrscheinlickeit, dass X höchstens den Wert $x_p$ annimmt, ist mind. $p/100 \%$ \\
+\hline Modus & $F_x(x_p) = p$ & Die Wahrscheinlickeit, dass X hÃ¶chstens den Wert $x_p$ annimmt, ist mind. $p/100 \%$ \\
 \hline Varianz & $Var(X) = \int\limits_{-\infty}^{+\infty}(x-\mu_x)^2*f(x)dx$ & Standardabweichung ist $\sqrt{Var(X)}$\\
 \hline Rechenregeln & vgl. Diskrete Zufallsvariablen & \\
 \hline
 \end{tabular}
-\caption{Begriffserklärungen: Stetige Zufallsvariablen}
+\caption{BegriffserklÃ¤rungen: Stetige Zufallsvariablen}
 \end{table}
+\end{landscape}
+
 \normalRowSize
 
-\section{title}
+\newpage
+\includepdf[page=1, angle=90]{Zusammenfassung_Verteilungen}
+
+\newpage
+\includepdf[page=2, angle=90]{Zusammenfassung_Verteilungen}
+
 \end{document}
 
 

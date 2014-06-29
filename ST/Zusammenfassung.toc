@@ -1,0 +1,23 @@
+\select@language {ngerman}
+\contentsline {section}{\numberline {1}Grundlagen}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}H\IeC {\"a}ufigkeitsverteilungen}{2}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Kummulierte H\IeC {\"a}ufigkeiten}{2}{subsection.1.2}
+\contentsline {subsubsection}{\numberline {1.2.1}Absolut}{2}{subsubsection.1.2.1}
+\contentsline {subsubsection}{\numberline {1.2.2}Relativ}{2}{subsubsection.1.2.2}
+\contentsline {subsubsection}{\numberline {1.2.3}Empirische Verteilungsfunktion}{2}{subsubsection.1.2.3}
+\contentsline {subsection}{\numberline {1.3}Ma\IeC {\ss }zahlen zur Beschreibung einer Verteilung}{3}{subsection.1.3}
+\contentsline {subsubsection}{\numberline {1.3.1}Modus}{3}{subsubsection.1.3.1}
+\contentsline {subsubsection}{\numberline {1.3.2}Median - Quantile}{3}{subsubsection.1.3.2}
+\contentsline {subsubsection}{\numberline {1.3.3}Arithmetisches Mittel}{3}{subsubsection.1.3.3}
+\contentsline {section}{\numberline {2}Streuung und Konzentration}{4}{section.2}
+\contentsline {subsubsection}{\numberline {2.0.4}Spannweite}{4}{subsubsection.2.0.4}
+\contentsline {subsubsection}{\numberline {2.0.5}Quartilsabstand}{4}{subsubsection.2.0.5}
+\contentsline {subsubsection}{\numberline {2.0.6}Varianz}{4}{subsubsection.2.0.6}
+\contentsline {subsubsection}{\numberline {2.0.7}Standardabweichung}{4}{subsubsection.2.0.7}
+\contentsline {subsubsection}{\numberline {2.0.8}Standardisierte Merkmale}{4}{subsubsection.2.0.8}
+\contentsline {subsubsection}{\numberline {2.0.9}Kovarianz}{4}{subsubsection.2.0.9}
+\contentsline {subsubsection}{\numberline {2.0.10}Korrelationskoeffizient}{4}{subsubsection.2.0.10}
+\contentsline {subsubsection}{\numberline {2.0.11}Regressionsgerade}{5}{subsubsection.2.0.11}
+\contentsline {section}{\numberline {3}Wahrscheinlichkeitstheorie}{5}{section.3}
+\contentsline {section}{\numberline {4}Diskrete Zufallsvariablen}{6}{section.4}
+\contentsline {section}{\numberline {5}Stetige Zufallsvariablen}{7}{section.5}
