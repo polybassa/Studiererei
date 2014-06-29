@@ -21,3 +21,5 @@
 \contentsline {section}{\numberline {3}Wahrscheinlichkeitstheorie}{5}{section.3}
 \contentsline {section}{\numberline {4}Diskrete Zufallsvariablen}{6}{section.4}
 \contentsline {section}{\numberline {5}Stetige Zufallsvariablen}{7}{section.5}
+\contentsline {section}{\numberline {6}Diskrete Verteilungen}{8}{section.6}
+\contentsline {section}{\numberline {7}Stetige Verteilungen}{9}{section.7}
